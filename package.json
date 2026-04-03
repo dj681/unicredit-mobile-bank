@@ -6,7 +6,8 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "build:web": "expo export --platform web && sed -i 's|src=\"/_expo/|src=\"./_expo/|g' dist/index.html"
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.2.3",
