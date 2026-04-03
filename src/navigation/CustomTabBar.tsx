@@ -4,7 +4,7 @@ import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 const ACTIVE_COLOR = '#007B8F';
-const INACTIVE_COLOR = '#888888';
+const INACTIVE_COLOR = '#AAAAAA';
 
 type IoniconsName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -12,14 +12,14 @@ function getTabIcon(routeName: string, focused: boolean): IoniconsName {
   switch (routeName) {
     case 'Home':
       return focused ? 'home' : 'home-outline';
-    case 'Consumption':
+    case 'Spending':
       return focused ? 'pie-chart' : 'pie-chart-outline';
     case 'Payments':
-      return focused ? 'arrow-redo' : 'arrow-redo-outline';
-    case 'Products':
+      return focused ? 'card' : 'card-outline';
+    case 'Offers':
       return focused ? 'apps' : 'apps-outline';
     case 'More':
-      return focused ? 'ellipsis-horizontal' : 'ellipsis-horizontal-outline';
+      return focused ? 'information-circle' : 'information-circle-outline';
     default:
       return 'help-circle-outline';
   }
@@ -63,12 +63,9 @@ export default function CustomTabBar({ state, descriptors, navigation }: BottomT
             style={styles.tab}
             activeOpacity={0.75}
           >
-            <View style={styles.indicatorSlot}>
-              {isFocused && <View style={styles.activeIndicator} />}
-            </View>
             <Ionicons
               name={iconName}
-              size={24}
+              size={26}
               color={isFocused ? ACTIVE_COLOR : INACTIVE_COLOR}
             />
             <Text
@@ -76,13 +73,14 @@ export default function CustomTabBar({ state, descriptors, navigation }: BottomT
                 styles.label,
                 {
                   color: isFocused ? ACTIVE_COLOR : INACTIVE_COLOR,
-                  fontWeight: isFocused ? '700' : '500',
+                  fontWeight: isFocused ? '700' : '400',
                 },
               ]}
               numberOfLines={1}
             >
               {label}
             </Text>
+            {isFocused && <View style={styles.activeIndicator} />}
           </TouchableOpacity>
         );
       })}
@@ -94,37 +92,34 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: '#FFFFFF',
-    borderTopWidth: 1,
-    borderTopColor: '#E5E5E5',
-    height: 72,
-    paddingBottom: 8,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    paddingTop: 12,
+    paddingBottom: 16,
+    paddingHorizontal: 8,
     shadowColor: '#000000',
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 6,
-    elevation: 10,
+    shadowOffset: { width: 0, height: -4 },
+    shadowOpacity: 0.12,
+    shadowRadius: 12,
+    elevation: 16,
   },
   tab: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  indicatorSlot: {
-    width: '100%',
-    height: 3,
-    alignItems: 'center',
-    marginBottom: 8,
+    justifyContent: 'center',
+    paddingVertical: 4,
+    gap: 4,
   },
   activeIndicator: {
-    width: 32,
+    position: 'absolute',
+    bottom: 0,
+    width: 24,
     height: 3,
     backgroundColor: ACTIVE_COLOR,
-    borderBottomLeftRadius: 2,
-    borderBottomRightRadius: 2,
+    borderRadius: 2,
   },
   label: {
-    fontSize: 11,
-    marginTop: 5,
-    letterSpacing: 0.1,
+    fontSize: 10,
+    letterSpacing: 0.2,
   },
 });

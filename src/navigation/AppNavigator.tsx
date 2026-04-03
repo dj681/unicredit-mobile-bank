@@ -24,9 +24,9 @@ export default function AppNavigator() {
         options={{ title: t('navigation.home') }}
       />
       <Tab.Screen
-        name="Consumption"
+        name="Spending"
         component={ConsumptionScreen}
-        options={{ title: t('navigation.consumption') }}
+        options={{ title: t('navigation.spending') }}
       />
       <Tab.Screen
         name="Payments"
@@ -34,9 +34,9 @@ export default function AppNavigator() {
         options={{ title: t('navigation.payments') }}
       />
       <Tab.Screen
-        name="Products"
+        name="Offers"
         component={ProductsScreen}
-        options={{ title: t('navigation.products') }}
+        options={{ title: t('navigation.offers') }}
       />
       <Tab.Screen
         name="More"

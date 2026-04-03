@@ -1,9 +1,9 @@
 export const en = {
   navigation: {
-    home: '🏠 Home',
-    consumption: 'Consumption',
+    home: 'Home',
+    spending: 'Spending',
     payments: 'Payments',
-    products: 'Products',
+    offers: 'Offers',
     more: 'More',
   },
   onboarding: {
