@@ -6,13 +6,16 @@ import {
   StyleSheet,
   SafeAreaView,
   ScrollView,
+  Modal,
 } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
+import CardDetailScreen from './CardDetailScreen';
 
 export default function HomeScreen() {
   const { t } = useLanguage();
   const [accountsExpanded, setAccountsExpanded] = useState(true);
   const [cardsExpanded, setCardsExpanded] = useState(true);
+  const [cardDetailVisible, setCardDetailVisible] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -39,7 +42,7 @@ export default function HomeScreen() {
             <View style={styles.balanceRow}>
               <View>
                 <Text style={styles.balanceLabel}>{t('home.currentBalance')}</Text>
-                <Text style={styles.balanceAmount}>100,00 BAM</Text>
+                <Text style={styles.balanceAmount}>100,00 €</Text>
               </View>
               <View style={styles.cardChip} />
             </View>
@@ -47,7 +50,7 @@ export default function HomeScreen() {
             <View style={styles.balanceRow}>
               <View>
                 <Text style={styles.balanceLabel}>{t('home.availableFunds')}</Text>
-                <Text style={styles.fundsAmount}>1.000,00 BAM</Text>
+                <Text style={styles.fundsAmount}>1.000,00 €</Text>
               </View>
               <View style={styles.cardBrand}>
                 <View style={styles.brandCircleLeft} />
@@ -87,7 +90,7 @@ export default function HomeScreen() {
                 </View>
                 <View style={styles.accountRight}>
                   <Text style={styles.accountBalance}>1.000,00</Text>
-                  <Text style={styles.accountCurrency}>BAM</Text>
+                  <Text style={styles.accountCurrency}>€</Text>
                 </View>
               </View>
             </View>
@@ -111,14 +114,18 @@ export default function HomeScreen() {
 
           {cardsExpanded && (
             <View style={styles.sectionContent}>
-              <View style={styles.cardItem}>
+              <TouchableOpacity
+                style={styles.cardItem}
+                onPress={() => setCardDetailVisible(true)}
+                activeOpacity={0.7}
+              >
                 <View style={styles.miniCard}>
                   <Text style={styles.miniCardBank}>UniCredit</Text>
-                  <Text style={styles.miniCardNumber}>•••• 4821</Text>
+                  <Text style={styles.miniCardNumber}>•••• 2828</Text>
                 </View>
                 <View style={styles.cardInfo}>
                   <Text style={styles.cardName}>{t('home.debitCard')}</Text>
-                  <Text style={styles.cardDetail}>•••• •••• •••• 4821</Text>
+                  <Text style={styles.cardDetail}>•••• •••• •••• 2828</Text>
                   <View style={styles.cardBadge}>
                     <Text style={styles.cardBadgeText}>VISA</Text>
                   </View>
@@ -126,13 +133,22 @@ export default function HomeScreen() {
                 <View style={styles.cardRight}>
                   <Text style={styles.cardBalanceLabel}>{t('home.balance')}</Text>
                   <Text style={styles.cardBalance}>100,00</Text>
-                  <Text style={styles.cardCurrency}>BAM</Text>
+                  <Text style={styles.cardCurrency}>€</Text>
                 </View>
-              </View>
+              </TouchableOpacity>
             </View>
           )}
         </View>
       </ScrollView>
+
+      {/* Card Detail Modal */}
+      <Modal
+        visible={cardDetailVisible}
+        animationType="slide"
+        onRequestClose={() => setCardDetailVisible(false)}
+      >
+        <CardDetailScreen onBack={() => setCardDetailVisible(false)} />
+      </Modal>
     </SafeAreaView>
   );
 }
