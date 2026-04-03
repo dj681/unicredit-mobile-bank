@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
 import InPageTabBar from '../components/InPageTabBar';
+import ProfessionalTabBar, { ProfileTab, ProfessionalEmptyState } from '../components/ProfessionalTabBar';
 
 interface PaymentOption {
   icon: string;
@@ -52,6 +53,7 @@ const paymentOptions: PaymentOption[] = [
 
 export default function PaymentsScreen() {
   const { t } = useLanguage();
+  const [profileTab, setProfileTab] = React.useState<ProfileTab>('personal');
 
   return (
     <SafeAreaView style={styles.container}>
@@ -75,28 +77,35 @@ export default function PaymentsScreen() {
       </View>
 
       <InPageTabBar activeTab="Payments" />
+      <ProfessionalTabBar activeTab={profileTab} onTabChange={setProfileTab} />
 
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {paymentOptions.map((option, index) => (
-          <TouchableOpacity key={index} style={styles.optionCard} activeOpacity={0.75}>
-            <View style={[styles.optionIconWrapper, { backgroundColor: option.color }]}>
-              <Text style={styles.optionIcon}>{option.icon}</Text>
-            </View>
-            <View style={styles.optionTextArea}>
-              <Text style={styles.optionTitle}>{t(option.titleKey)}</Text>
-              <Text style={styles.optionDesc} numberOfLines={2}>
-                {t(option.descKey)}
-              </Text>
-            </View>
-            <View style={styles.optionArrowContainer}>
-              <Text style={styles.optionArrow}>›</Text>
-            </View>
-          </TouchableOpacity>
-        ))}
+        {profileTab === 'professional' ? (
+          <ProfessionalEmptyState />
+        ) : (
+          <>
+            {paymentOptions.map((option, index) => (
+              <TouchableOpacity key={index} style={styles.optionCard} activeOpacity={0.75}>
+                <View style={[styles.optionIconWrapper, { backgroundColor: option.color }]}>
+                  <Text style={styles.optionIcon}>{option.icon}</Text>
+                </View>
+                <View style={styles.optionTextArea}>
+                  <Text style={styles.optionTitle}>{t(option.titleKey)}</Text>
+                  <Text style={styles.optionDesc} numberOfLines={2}>
+                    {t(option.descKey)}
+                  </Text>
+                </View>
+                <View style={styles.optionArrowContainer}>
+                  <Text style={styles.optionArrow}>›</Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </>
+        )}
       </ScrollView>
     </SafeAreaView>
   );

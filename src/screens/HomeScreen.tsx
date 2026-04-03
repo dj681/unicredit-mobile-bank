@@ -12,6 +12,7 @@ import { useLanguage } from '../context/LanguageContext';
 import CardDetailScreen from './CardDetailScreen';
 import ProfileScreen from './ProfileScreen';
 import InPageTabBar from '../components/InPageTabBar';
+import ProfessionalTabBar, { ProfileTab, ProfessionalEmptyState } from '../components/ProfessionalTabBar';
 
 export default function HomeScreen() {
   const { t } = useLanguage();
@@ -19,6 +20,7 @@ export default function HomeScreen() {
   const [cardsExpanded, setCardsExpanded] = useState(true);
   const [cardDetailVisible, setCardDetailVisible] = useState(false);
   const [profileVisible, setProfileVisible] = useState(false);
+  const [profileTab, setProfileTab] = useState<ProfileTab>('personal');
 
   return (
     <SafeAreaView style={styles.container}>
@@ -35,13 +37,17 @@ export default function HomeScreen() {
       </View>
 
       <InPageTabBar activeTab="Home" />
+      <ProfessionalTabBar activeTab={profileTab} onTabChange={setProfileTab} />
 
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Main Balance Card */}
+        {profileTab === 'professional' ? (
+          <ProfessionalEmptyState />
+        ) : (
+          <>
         <View style={styles.balanceCard}>
           <View style={styles.balanceCardInner}>
             <View style={styles.balanceRow}>
@@ -144,6 +150,8 @@ export default function HomeScreen() {
             </View>
           )}
         </View>
+          </>
+        )}
       </ScrollView>
 
       {/* Card Detail Modal */}

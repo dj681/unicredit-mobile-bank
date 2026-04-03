@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
 import InPageTabBar from '../components/InPageTabBar';
+import ProfessionalTabBar, { ProfileTab, ProfessionalEmptyState } from '../components/ProfessionalTabBar';
 
 interface ProductCard {
   icon: string;
@@ -46,6 +47,7 @@ const productCards: ProductCard[] = [
 
 export default function ProductsScreen() {
   const { t } = useLanguage();
+  const [profileTab, setProfileTab] = React.useState<ProfileTab>('personal');
 
   return (
     <SafeAreaView style={styles.container}>
@@ -66,37 +68,44 @@ export default function ProductsScreen() {
       </View>
 
       <InPageTabBar activeTab="Products" />
+      <ProfessionalTabBar activeTab={profileTab} onTabChange={setProfileTab} />
 
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        <View style={styles.grid}>
-          {productCards.map((card, index) => (
-            <TouchableOpacity
-              key={index}
-              style={[styles.productCard, { backgroundColor: card.color }]}
-              activeOpacity={0.8}
-            >
-              <View style={[styles.iconCircle, { backgroundColor: 'rgba(255,255,255,0.15)' }]}>
-                <Text style={styles.productIcon}>{card.icon}</Text>
-              </View>
-              <Text style={styles.productTitle}>{t(card.titleKey)}</Text>
-              <View style={styles.arrowRow}>
-                <Text style={styles.productArrow}>→</Text>
-              </View>
-            </TouchableOpacity>
-          ))}
-        </View>
+        {profileTab === 'professional' ? (
+          <ProfessionalEmptyState />
+        ) : (
+          <>
+            <View style={styles.grid}>
+              {productCards.map((card, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={[styles.productCard, { backgroundColor: card.color }]}
+                  activeOpacity={0.8}
+                >
+                  <View style={[styles.iconCircle, { backgroundColor: 'rgba(255,255,255,0.15)' }]}>
+                    <Text style={styles.productIcon}>{card.icon}</Text>
+                  </View>
+                  <Text style={styles.productTitle}>{t(card.titleKey)}</Text>
+                  <View style={styles.arrowRow}>
+                    <Text style={styles.productArrow}>→</Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
+            </View>
 
-        {/* Info Banner */}
-        <View style={styles.infoBanner}>
-          <Text style={styles.infoBannerIcon}>ℹ️</Text>
-          <Text style={styles.infoBannerText}>
-            {t('products.title')}
-          </Text>
-        </View>
+            {/* Info Banner */}
+            <View style={styles.infoBanner}>
+              <Text style={styles.infoBannerIcon}>ℹ️</Text>
+              <Text style={styles.infoBannerText}>
+                {t('products.title')}
+              </Text>
+            </View>
+          </>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
