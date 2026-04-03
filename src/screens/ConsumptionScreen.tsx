@@ -16,7 +16,7 @@ export default function ConsumptionScreen() {
   const [searchQuery, setSearchQuery] = useState('');
 
   const incomeHeight = 120;
-  const expenseHeight = 40;
+  const expenseHeight = 0;
   const maxBarHeight = 120;
 
   return (
@@ -45,14 +45,16 @@ export default function ConsumptionScreen() {
           <View style={styles.chartContainer}>
             <View style={styles.barGroup}>
               <View style={styles.barLabelTop}>
-                <Text style={styles.barValue}>3.000 BAM</Text>
+                <Text style={styles.barValue}>3.000 €</Text>
               </View>
               <View style={[styles.bar, { height: incomeHeight, backgroundColor: '#1B7B8B' }]} />
               <Text style={styles.barLabel}>{t('consumption.income')}</Text>
             </View>
 
             <View style={styles.barGroup}>
-              <View style={[styles.barLabelTop, { height: maxBarHeight - expenseHeight }]} />
+              <View style={[styles.barLabelTop, { height: maxBarHeight - expenseHeight }]}>
+                <Text style={styles.barValue}>0,00 €</Text>
+              </View>
               <View style={[styles.bar, { height: expenseHeight, backgroundColor: '#2A2A2A' }]} />
               <Text style={styles.barLabel}>{t('consumption.expenses')}</Text>
             </View>
@@ -115,7 +117,7 @@ export default function ConsumptionScreen() {
                 <Text style={styles.transactionDate}>03/2025</Text>
               </View>
             </View>
-            <Text style={styles.transactionAmountNeg}>-1.000,00 BAM</Text>
+            <Text style={styles.transactionAmountNeg}>0,00 €</Text>
           </View>
         </View>
 
@@ -123,7 +125,7 @@ export default function ConsumptionScreen() {
         <View style={styles.rashodiSection}>
           <View style={styles.rashodiHeader}>
             <Text style={styles.rashodiTitle}>{t('consumption.rashodi')}</Text>
-            <Text style={styles.rashodiTotal}>-1.000,00 BAM</Text>
+            <Text style={styles.rashodiTotal}>0,00 €</Text>
           </View>
 
           <View style={styles.transactionItem}>
@@ -136,7 +138,7 @@ export default function ConsumptionScreen() {
                 <Text style={styles.transactionDate}>03/2025</Text>
               </View>
             </View>
-            <Text style={styles.transactionAmountNeg}>-2.000,00 BAM</Text>
+            <Text style={styles.transactionAmountNeg}>0,00 €</Text>
           </View>
         </View>
       </ScrollView>
