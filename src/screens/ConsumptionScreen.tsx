@@ -106,19 +106,7 @@ export default function ConsumptionScreen() {
         {/* Transactions Section */}
         <View style={styles.transactionsSection}>
           <Text style={styles.sectionLabel}>{t('consumption.transactions')}</Text>
-
-          <View style={styles.transactionItem}>
-            <View style={styles.transactionLeft}>
-              <View style={[styles.transactionIcon, { backgroundColor: '#F0F0F0' }]}>
-                <Text style={styles.transactionIconText}>🏧</Text>
-              </View>
-              <View>
-                <Text style={styles.transactionName}>{t('consumption.totalWithdrawal')}</Text>
-                <Text style={styles.transactionDate}>03/2025</Text>
-              </View>
-            </View>
-            <Text style={styles.transactionAmountNeg}>0,00 €</Text>
-          </View>
+          <Text style={styles.noTransactionsText}>Aucune transaction — 0,00 €</Text>
         </View>
 
         {/* Rashodi Section */}
@@ -126,19 +114,6 @@ export default function ConsumptionScreen() {
           <View style={styles.rashodiHeader}>
             <Text style={styles.rashodiTitle}>{t('consumption.rashodi')}</Text>
             <Text style={styles.rashodiTotal}>0,00 €</Text>
-          </View>
-
-          <View style={styles.transactionItem}>
-            <View style={styles.transactionLeft}>
-              <View style={[styles.transactionIcon, { backgroundColor: '#FFF0F0' }]}>
-                <Text style={styles.transactionIconText}>🛒</Text>
-              </View>
-              <View>
-                <Text style={styles.transactionName}>{t('consumption.groceries')}</Text>
-                <Text style={styles.transactionDate}>03/2025</Text>
-              </View>
-            </View>
-            <Text style={styles.transactionAmountNeg}>0,00 €</Text>
           </View>
         </View>
       </ScrollView>
@@ -347,6 +322,12 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
     textTransform: 'uppercase',
     marginBottom: 12,
+  },
+  noTransactionsText: {
+    fontSize: 14,
+    color: '#888',
+    textAlign: 'center',
+    paddingVertical: 8,
   },
   transactionItem: {
     flexDirection: 'row',
