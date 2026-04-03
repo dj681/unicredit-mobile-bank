@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { useLanguage } from '../context/LanguageContext';
 import HomeScreen from '../screens/HomeScreen';
 import ConsumptionScreen from '../screens/ConsumptionScreen';
@@ -10,15 +11,18 @@ import MoreScreen from '../screens/MoreScreen';
 
 const Tab = createBottomTabNavigator();
 
+type IoniconsName = React.ComponentProps<typeof Ionicons>['name'];
+
 interface TabIconProps {
-  emoji: string;
-  focused: boolean;
+  name: IoniconsName;
+  color: string;
+  size: number;
 }
 
-function TabIcon({ emoji, focused }: TabIconProps) {
+function TabIcon({ name, color, size }: TabIconProps) {
   return (
     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ fontSize: 20, opacity: focused ? 1 : 0.6 }}>{emoji}</Text>
+      <Ionicons name={name} size={size} color={color} />
     </View>
   );
 }
@@ -51,7 +55,7 @@ export default function AppNavigator() {
         component={HomeScreen}
         options={{
           title: t('navigation.home'),
-          tabBarIcon: ({ focused }) => <TabIcon emoji="🏠" focused={focused} />,
+          tabBarIcon: ({ color, size }) => <TabIcon name="home" color={color} size={size} />,
         }}
       />
       <Tab.Screen
@@ -59,7 +63,7 @@ export default function AppNavigator() {
         component={ConsumptionScreen}
         options={{
           title: t('navigation.consumption'),
-          tabBarIcon: ({ focused }) => <TabIcon emoji="📊" focused={focused} />,
+          tabBarIcon: ({ color, size }) => <TabIcon name="pie-chart" color={color} size={size} />,
         }}
       />
       <Tab.Screen
@@ -67,7 +71,7 @@ export default function AppNavigator() {
         component={PaymentsScreen}
         options={{
           title: t('navigation.payments'),
-          tabBarIcon: ({ focused }) => <TabIcon emoji="💸" focused={focused} />,
+          tabBarIcon: ({ color, size }) => <TabIcon name="arrow-redo" color={color} size={size} />,
         }}
       />
       <Tab.Screen
@@ -75,7 +79,7 @@ export default function AppNavigator() {
         component={ProductsScreen}
         options={{
           title: t('navigation.products'),
-          tabBarIcon: ({ focused }) => <TabIcon emoji="🏪" focused={focused} />,
+          tabBarIcon: ({ color, size }) => <TabIcon name="apps" color={color} size={size} />,
         }}
       />
       <Tab.Screen
@@ -83,7 +87,7 @@ export default function AppNavigator() {
         component={MoreScreen}
         options={{
           title: t('navigation.more'),
-          tabBarIcon: ({ focused }) => <TabIcon emoji="☰" focused={focused} />,
+          tabBarIcon: ({ color, size }) => <TabIcon name="ellipsis-vertical" color={color} size={size} />,
         }}
       />
     </Tab.Navigator>

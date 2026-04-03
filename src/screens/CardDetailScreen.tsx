@@ -42,9 +42,20 @@ export default function CardDetailScreen({ onBack }: CardDetailScreenProps) {
           <View style={styles.visualCardInner}>
             <View style={styles.vcHeader}>
               <Text style={styles.vcBankName}>UniCredit Bank</Text>
+              <View style={styles.vcChip} />
             </View>
-            <View style={styles.vcBody} />
+            <View style={styles.vcBody}>
+              <Text style={styles.vcCardNumber}>•••• •••• •••• 2828</Text>
+            </View>
             <View style={styles.vcFooter}>
+              <View style={styles.vcFooterLeft}>
+                <Text style={styles.vcLabel}>TITULAIRE</Text>
+                <Text style={styles.vcHolderName}>JOHN DOE</Text>
+              </View>
+              <View style={styles.vcFooterRight}>
+                <Text style={styles.vcLabel}>EXPIRY</Text>
+                <Text style={styles.vcExpiry}>03/28</Text>
+              </View>
               <View style={styles.vcMastercardBadge}>
                 <View style={styles.mcCircleLeft} />
                 <View style={styles.mcCircleRight} />
@@ -175,6 +186,14 @@ const styles = StyleSheet.create({
   vcHeader: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  vcChip: {
+    width: 32,
+    height: 24,
+    borderRadius: 4,
+    backgroundColor: '#FFD700',
+    opacity: 0.85,
   },
   vcBankName: {
     color: '#FFFFFF',
@@ -184,11 +203,43 @@ const styles = StyleSheet.create({
   },
   vcBody: {
     flex: 1,
+    justifyContent: 'center',
+  },
+  vcCardNumber: {
+    color: '#FFFFFF',
+    fontSize: 15,
+    fontWeight: '600',
+    letterSpacing: 2,
   },
   vcFooter: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+  },
+  vcFooterLeft: {
+    flex: 1,
+  },
+  vcFooterRight: {
+    flex: 1,
+    marginLeft: 12,
+  },
+  vcLabel: {
+    color: 'rgba(255,255,255,0.65)',
+    fontSize: 9,
+    letterSpacing: 0.5,
+    marginBottom: 2,
+  },
+  vcHolderName: {
+    color: '#FFFFFF',
+    fontSize: 11,
+    fontWeight: '700',
+    letterSpacing: 0.5,
+  },
+  vcExpiry: {
+    color: '#FFFFFF',
+    fontSize: 11,
+    fontWeight: '700',
+    letterSpacing: 1,
   },
   vcMastercardBadge: {
     flexDirection: 'row',

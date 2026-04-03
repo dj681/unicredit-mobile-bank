@@ -85,7 +85,7 @@ export default function HomeScreen() {
                   </View>
                   <View>
                     <Text style={styles.accountName}>{t('home.currentAccount')}</Text>
-                    <Text style={styles.accountNumber}>BA39 1234 5678 9012 3456</Text>
+                    <Text style={styles.accountNumber}>TR33 0006 1005 1978 6457 8413 26</Text>
                   </View>
                 </View>
                 <View style={styles.accountRight}>
