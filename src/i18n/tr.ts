@@ -1,6 +1,6 @@
 export const tr = {
   navigation: {
-    home: 'Ana Sayfa',
+    home: '🏠 Ana Sayfa',
     consumption: 'Tüketim',
     payments: 'Ödemeler',
     products: 'Ürünlerimiz',
