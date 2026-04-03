@@ -84,6 +84,7 @@ export const en = {
     languageSelection: 'Language Selection',
     turkish: 'Turkish',
     english: 'English',
+    french: 'French',
     call: 'Call',
     email: 'Email',
     share: 'Share',

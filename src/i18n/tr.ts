@@ -84,6 +84,7 @@ export const tr = {
     languageSelection: 'Dil Seçimi',
     turkish: 'Türkçe',
     english: 'İngilizce',
+    french: 'Fransızca',
     call: 'Ara',
     email: 'E-posta',
     share: 'Paylaş',
