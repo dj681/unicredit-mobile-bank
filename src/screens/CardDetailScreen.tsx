@@ -49,7 +49,7 @@ export default function CardDetailScreen({ onBack }: CardDetailScreenProps) {
             </View>
             <View style={styles.vcFooter}>
               <View style={styles.vcFooterLeft}>
-                <Text style={styles.vcLabel}>TITULAIRE</Text>
+                <Text style={styles.vcLabel}>CARDHOLDER</Text>
                 <Text style={styles.vcHolderName}>JOHN DOE</Text>
               </View>
               <View style={styles.vcFooterRight}>
