@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
 import InPageTabBar from '../components/InPageTabBar';
-import ProfessionalTabBar, { ProfileTab, ProfessionalEmptyState } from '../components/ProfessionalTabBar';
 
 interface PaymentOption {
   icon: string;
@@ -53,7 +52,6 @@ const paymentOptions: PaymentOption[] = [
 
 export default function PaymentsScreen() {
   const { t } = useLanguage();
-  const [profileTab, setProfileTab] = React.useState<ProfileTab>('personal');
 
   return (
     <SafeAreaView style={styles.container}>
@@ -77,17 +75,13 @@ export default function PaymentsScreen() {
       </View>
 
       <InPageTabBar activeTab="Payments" />
-      <ProfessionalTabBar activeTab={profileTab} onTabChange={setProfileTab} />
 
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {profileTab === 'professional' ? (
-          <ProfessionalEmptyState />
-        ) : (
-          <>
+        <>
             {paymentOptions.map((option, index) => (
               <TouchableOpacity key={index} style={styles.optionCard} activeOpacity={0.75}>
                 <View style={[styles.optionIconWrapper, { backgroundColor: option.color }]}>
@@ -105,7 +99,6 @@ export default function PaymentsScreen() {
               </TouchableOpacity>
             ))}
           </>
-        )}
       </ScrollView>
     </SafeAreaView>
   );

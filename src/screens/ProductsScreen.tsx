@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
 import InPageTabBar from '../components/InPageTabBar';
-import ProfessionalTabBar, { ProfileTab, ProfessionalEmptyState } from '../components/ProfessionalTabBar';
 
 interface ProductCard {
   icon: string;
@@ -47,7 +46,6 @@ const productCards: ProductCard[] = [
 
 export default function ProductsScreen() {
   const { t } = useLanguage();
-  const [profileTab, setProfileTab] = React.useState<ProfileTab>('personal');
 
   return (
     <SafeAreaView style={styles.container}>
@@ -68,17 +66,13 @@ export default function ProductsScreen() {
       </View>
 
       <InPageTabBar activeTab="Products" />
-      <ProfessionalTabBar activeTab={profileTab} onTabChange={setProfileTab} />
 
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {profileTab === 'professional' ? (
-          <ProfessionalEmptyState />
-        ) : (
-          <>
+        <>
             <View style={styles.grid}>
               {productCards.map((card, index) => (
                 <TouchableOpacity
@@ -105,7 +99,6 @@ export default function ProductsScreen() {
               </Text>
             </View>
           </>
-        )}
       </ScrollView>
     </SafeAreaView>
   );
