@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useLanguage } from '../context/LanguageContext';
 import HomeScreen from '../screens/HomeScreen';
@@ -27,6 +27,37 @@ function TabIcon({ name, color, size }: TabIconProps) {
   );
 }
 
+function HomeTabIcon({ color, size }: { color: string; size: number }) {
+  return (
+    <View style={styles.homeIconWrapper}>
+      <View style={styles.homeIconCircle}>
+        <Ionicons name="home" size={size + 4} color="#FFFFFF" />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  homeIconWrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: -18,
+  },
+  homeIconCircle: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: '#E31837',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#E31837',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+});
+
 export default function AppNavigator() {
   const { t } = useLanguage();
 
@@ -40,8 +71,8 @@ export default function AppNavigator() {
           backgroundColor: '#fff',
           borderTopWidth: 1,
           borderTopColor: '#eee',
-          height: 60,
-          paddingBottom: 8,
+          height: 75,
+          paddingBottom: 10,
           paddingTop: 4,
         },
         tabBarLabelStyle: {
@@ -55,7 +86,12 @@ export default function AppNavigator() {
         component={HomeScreen}
         options={{
           title: t('navigation.home'),
-          tabBarIcon: ({ color, size }) => <TabIcon name="home" color={color} size={size} />,
+          tabBarIcon: ({ color, size }) => <HomeTabIcon color={color} size={size} />,
+          tabBarLabelStyle: {
+            fontSize: 11,
+            fontWeight: '600',
+            marginTop: 12,
+          },
         }}
       />
       <Tab.Screen
