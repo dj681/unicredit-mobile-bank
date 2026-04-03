@@ -1,6 +1,6 @@
 export const en = {
   navigation: {
-    home: 'Home',
+    home: '🏠 Home',
     consumption: 'Consumption',
     payments: 'Payments',
     products: 'Products',
