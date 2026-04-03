@@ -10,12 +10,14 @@ import {
 } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
 import CardDetailScreen from './CardDetailScreen';
+import ProfileScreen from './ProfileScreen';
 
 export default function HomeScreen() {
   const { t } = useLanguage();
   const [accountsExpanded, setAccountsExpanded] = useState(true);
   const [cardsExpanded, setCardsExpanded] = useState(true);
   const [cardDetailVisible, setCardDetailVisible] = useState(false);
+  const [profileVisible, setProfileVisible] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -26,7 +28,7 @@ export default function HomeScreen() {
           <View style={styles.logoDot} />
         </View>
         <Text style={styles.headerTitle}>{t('home.title')}</Text>
-        <TouchableOpacity style={styles.avatarButton}>
+        <TouchableOpacity style={styles.avatarButton} onPress={() => setProfileVisible(true)}>
           <Text style={styles.avatarText}>JD</Text>
         </TouchableOpacity>
       </View>
@@ -85,7 +87,7 @@ export default function HomeScreen() {
                   </View>
                   <View>
                     <Text style={styles.accountName}>{t('home.currentAccount')}</Text>
-                    <Text style={styles.accountNumber}>BA39 1234 5678 9012 3456</Text>
+                    <Text style={styles.accountNumber}>TR33 0006 1005 1978 6457 8413 26</Text>
                   </View>
                 </View>
                 <View style={styles.accountRight}>
@@ -148,6 +150,15 @@ export default function HomeScreen() {
         onRequestClose={() => setCardDetailVisible(false)}
       >
         <CardDetailScreen onBack={() => setCardDetailVisible(false)} />
+      </Modal>
+
+      {/* Profile Modal */}
+      <Modal
+        visible={profileVisible}
+        animationType="slide"
+        onRequestClose={() => setProfileVisible(false)}
+      >
+        <ProfileScreen onBack={() => setProfileVisible(false)} />
       </Modal>
     </SafeAreaView>
   );
