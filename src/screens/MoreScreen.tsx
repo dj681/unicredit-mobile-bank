@@ -129,35 +129,6 @@ export default function MoreScreen() {
               {language === 'en' && <View style={styles.radioInner} />}
             </View>
           </TouchableOpacity>
-
-          <View style={styles.languageDivider} />
-
-          <TouchableOpacity
-            style={[
-              styles.languageOption,
-              language === 'fr' && styles.languageOptionActive,
-            ]}
-            onPress={() => setLanguage('fr')}
-            activeOpacity={0.75}
-          >
-            <Text style={styles.flagEmoji}>🇫🇷</Text>
-            <Text
-              style={[
-                styles.languageOptionText,
-                language === 'fr' && styles.languageOptionTextActive,
-              ]}
-            >
-              {t('more.french')}
-            </Text>
-            <View
-              style={[
-                styles.radioCircle,
-                language === 'fr' && styles.radioCircleActive,
-              ]}
-            >
-              {language === 'fr' && <View style={styles.radioInner} />}
-            </View>
-          </TouchableOpacity>
         </View>
 
         {/* App Info */}

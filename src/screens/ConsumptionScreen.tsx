@@ -10,11 +10,13 @@ import {
 } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
 import InPageTabBar from '../components/InPageTabBar';
+import ProfessionalTabBar, { ProfileTab, ProfessionalEmptyState } from '../components/ProfessionalTabBar';
 
 export default function ConsumptionScreen() {
   const { t } = useLanguage();
   const [bannerVisible, setBannerVisible] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [profileTab, setProfileTab] = useState<ProfileTab>('personal');
 
   const incomeHeight = 120;
   const expenseHeight = 0;
@@ -28,12 +30,17 @@ export default function ConsumptionScreen() {
       </View>
 
       <InPageTabBar activeTab="Consumption" />
+      <ProfessionalTabBar activeTab={profileTab} onTabChange={setProfileTab} />
 
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
+        {profileTab === 'professional' ? (
+          <ProfessionalEmptyState />
+        ) : (
+          <>
         {/* Overview Card */}
         <View style={styles.overviewCard}>
           <View style={styles.overviewHeader}>
@@ -119,6 +126,8 @@ export default function ConsumptionScreen() {
             <Text style={styles.rashodiTotal}>0,00 €</Text>
           </View>
         </View>
+          </>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
