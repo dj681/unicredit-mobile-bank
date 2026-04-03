@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
+import InPageTabBar from '../components/InPageTabBar';
 
 interface PaymentOption {
   icon: string;
@@ -72,6 +73,8 @@ export default function PaymentsScreen() {
         </View>
         <Text style={styles.headerSubtitle}>{t('payments.title')}</Text>
       </View>
+
+      <InPageTabBar activeTab="Payments" />
 
       <ScrollView
         style={styles.scrollView}

@@ -11,6 +11,7 @@ import {
 import { useLanguage } from '../context/LanguageContext';
 import CardDetailScreen from './CardDetailScreen';
 import ProfileScreen from './ProfileScreen';
+import InPageTabBar from '../components/InPageTabBar';
 
 export default function HomeScreen() {
   const { t } = useLanguage();
@@ -32,6 +33,8 @@ export default function HomeScreen() {
           <Text style={styles.avatarText}>JD</Text>
         </TouchableOpacity>
       </View>
+
+      <InPageTabBar activeTab="Home" />
 
       <ScrollView
         style={styles.scrollView}

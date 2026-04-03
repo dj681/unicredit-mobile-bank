@@ -9,6 +9,7 @@ import {
   TextInput,
 } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
+import InPageTabBar from '../components/InPageTabBar';
 
 export default function ConsumptionScreen() {
   const { t } = useLanguage();
@@ -25,6 +26,8 @@ export default function ConsumptionScreen() {
       <View style={styles.header}>
         <Text style={styles.headerTitle}>{t('consumption.title')}</Text>
       </View>
+
+      <InPageTabBar activeTab="Consumption" />
 
       <ScrollView
         style={styles.scrollView}

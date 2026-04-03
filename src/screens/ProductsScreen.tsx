@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
+import InPageTabBar from '../components/InPageTabBar';
 
 interface ProductCard {
   icon: string;
@@ -63,6 +64,8 @@ export default function ProductsScreen() {
         </View>
         <Text style={styles.headerSubtitle}>{t('products.title')}</Text>
       </View>
+
+      <InPageTabBar activeTab="Products" />
 
       <ScrollView
         style={styles.scrollView}
