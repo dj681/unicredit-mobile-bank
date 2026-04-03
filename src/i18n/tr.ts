@@ -108,8 +108,5 @@ export const tr = {
     close: 'Kapat',
     help: 'Yardım',
     bam: 'BAM',
-    personal: 'Bireysel',
-    professional: 'Kurumsal',
-    noProfessionalAccounts: 'Kurumsal hesabınız bulunmamaktadır.',
   },
 };

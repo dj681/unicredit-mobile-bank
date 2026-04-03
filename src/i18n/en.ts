@@ -108,8 +108,5 @@ export const en = {
     close: 'Close',
     help: 'Help',
     bam: 'BAM',
-    personal: 'Personal',
-    professional: 'Professional',
-    noProfessionalAccounts: 'You have no professional accounts.',
   },
 };
