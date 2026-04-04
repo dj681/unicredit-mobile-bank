@@ -2,14 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
-const tabEmojis: Record<string, string> = {
-  Home: '🏦',
-  Spending: '📊',
-  Payments: '🔄',
-  Offers: '💎',
-  More: '☰',
-};
+import { TabIcon } from '../components/TabIcon';
 
 export default function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const insets = useSafeAreaInsets();
@@ -19,7 +12,6 @@ export default function CustomTabBar({ state, descriptors, navigation }: BottomT
         const { options } = descriptors[route.key];
         const label = options.title ?? route.name;
         const isFocused = state.index === index;
-        const emoji = tabEmojis[route.name] ?? '•';
 
         const onPress = () => {
           const event = navigation.emit({
@@ -39,9 +31,12 @@ export default function CustomTabBar({ state, descriptors, navigation }: BottomT
             onPress={onPress}
             activeOpacity={0.7}
           >
-            <Text style={[styles.emoji, isFocused && styles.emojiActive]}>
-              {emoji}
-            </Text>
+            <TabIcon
+              name={route.name}
+              color={isFocused ? '#E31837' : '#000000'}
+              size={24}
+              opacity={isFocused ? 1 : 0.55}
+            />
             <Text style={[styles.label, isFocused && styles.labelActive]}>
               {label}
             </Text>
@@ -64,13 +59,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 10,
     minHeight: 44,
-  },
-  emoji: {
-    fontSize: 22,
-    opacity: 0.55,
-  },
-  emojiActive: {
-    opacity: 1,
   },
   label: {
     fontSize: 10,
