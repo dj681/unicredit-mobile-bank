@@ -56,8 +56,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: '#FFFFFF',
-    borderTopWidth: 1,
-    borderTopColor: '#EEEEEE',
+    borderTopWidth: 0,
   },
   tab: {
     flex: 1,
