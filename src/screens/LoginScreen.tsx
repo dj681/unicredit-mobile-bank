@@ -21,6 +21,16 @@ export default function LoginScreen({ onBack, onContinue }: LoginScreenProps) {
   const { t } = useLanguage();
   const [userCode, setUserCode] = useState('');
   const [pin, setPin] = useState('');
+  const [error, setError] = useState('');
+
+  const handleContinue = () => {
+    if (userCode === '01965067' && pin === 'filomena12') {
+      setError('');
+      onContinue();
+    } else {
+      setError('Identifiants incorrects. Veuillez réessayer.');
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -76,7 +86,6 @@ export default function LoginScreen({ onBack, onContinue }: LoginScreenProps) {
                 placeholder={t('login.pin')}
                 placeholderTextColor="#666"
                 secureTextEntry
-                keyboardType="number-pad"
               />
             </View>
 
@@ -87,7 +96,8 @@ export default function LoginScreen({ onBack, onContinue }: LoginScreenProps) {
 
           {/* Bottom */}
           <View style={styles.bottomArea}>
-            <TouchableOpacity style={styles.continueButton} onPress={onContinue}>
+            {error ? <Text style={styles.errorText}>{error}</Text> : null}
+            <TouchableOpacity style={styles.continueButton} onPress={handleContinue}>
               <Text style={styles.continueButtonText}>{t('login.continue')}</Text>
             </TouchableOpacity>
 
@@ -203,6 +213,13 @@ const styles = StyleSheet.create({
   bottomArea: {
     paddingVertical: 32,
     gap: 12,
+  },
+  errorText: {
+    color: '#E31837',
+    fontSize: 14,
+    fontWeight: '600',
+    textAlign: 'center',
+    marginBottom: 4,
   },
   continueButton: {
     backgroundColor: '#E31837',
