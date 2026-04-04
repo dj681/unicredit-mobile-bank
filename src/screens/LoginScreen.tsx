@@ -28,7 +28,7 @@ export default function LoginScreen({ onBack, onContinue }: LoginScreenProps) {
       setError('');
       onContinue();
     } else {
-      setError('Identifiants incorrects. Veuillez réessayer.');
+      setError(t('login.invalidCredentials'));
     }
   };
 

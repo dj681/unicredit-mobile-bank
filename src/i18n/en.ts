@@ -20,6 +20,7 @@ export const en = {
     requestAccess: 'REQUEST LOGIN ACCESS DATA',
     back: 'Back',
     close: 'Close',
+    invalidCredentials: 'Invalid credentials. Please try again.',
   },
   home: {
     title: 'Home',
