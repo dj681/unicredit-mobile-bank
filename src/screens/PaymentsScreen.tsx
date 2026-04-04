@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
 import InPageTabBar from '../components/InPageTabBar';
+import TopNavigationBar from '../components/TopNavigationBar';
 
 interface PaymentOption {
   icon: string;
@@ -55,6 +56,7 @@ export default function PaymentsScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <TopNavigationBar />
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.headerTop}>

@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
 import InPageTabBar from '../components/InPageTabBar';
+import TopNavigationBar from '../components/TopNavigationBar';
 
 interface ProductCard {
   icon: string;
@@ -49,6 +50,7 @@ export default function ProductsScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <TopNavigationBar />
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.headerTop}>

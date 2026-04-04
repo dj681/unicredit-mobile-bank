@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
+import TopNavigationBar from '../components/TopNavigationBar';
 
 interface MoreOption {
   icon: string;
@@ -26,6 +27,7 @@ export default function MoreScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <TopNavigationBar />
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.headerTop}>

@@ -1,15 +1,14 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const tabIcons: Record<string, React.ComponentProps<typeof Ionicons>['name']> = {
-  Home: 'building',
-  Spending: 'trending-down',
-  Payments: 'cash',
-  Offers: 'grid',
-  More: 'ellipsis-vertical',
+const tabEmojis: Record<string, string> = {
+  Home: '🏦',
+  Spending: '📊',
+  Payments: '🔄',
+  Offers: '💎',
+  More: '☰',
 };
 
 export default function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
@@ -20,7 +19,7 @@ export default function CustomTabBar({ state, descriptors, navigation }: BottomT
         const { options } = descriptors[route.key];
         const label = options.title ?? route.name;
         const isFocused = state.index === index;
-        const iconName = tabIcons[route.name] ?? 'ellipsis-horizontal';
+        const emoji = tabEmojis[route.name] ?? '•';
 
         const onPress = () => {
           const event = navigation.emit({
@@ -40,11 +39,9 @@ export default function CustomTabBar({ state, descriptors, navigation }: BottomT
             onPress={onPress}
             activeOpacity={0.7}
           >
-            <Ionicons
-              name={iconName}
-              size={22}
-              color={isFocused ? '#E31837' : '#999999'}
-            />
+            <Text style={[styles.emoji, isFocused && styles.emojiActive]}>
+              {emoji}
+            </Text>
             <Text style={[styles.label, isFocused && styles.labelActive]}>
               {label}
             </Text>
@@ -67,6 +64,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 10,
+    minHeight: 44,
+  },
+  emoji: {
+    fontSize: 22,
+    opacity: 0.55,
+  },
+  emojiActive: {
+    opacity: 1,
   },
   label: {
     fontSize: 10,
