@@ -20,6 +20,7 @@ export const tr = {
     requestAccess: 'GİRİŞ ERİŞİM BİLGİLERİNİ TALEP ET',
     back: 'Geri',
     close: 'Kapat',
+    invalidCredentials: 'Geçersiz kimlik bilgileri. Lütfen tekrar deneyin.',
   },
   home: {
     title: 'Ana Sayfa',
