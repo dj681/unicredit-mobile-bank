@@ -10,18 +10,18 @@ import {
 } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
 import CardDetailScreen from './CardDetailScreen';
-import ProfileScreen from './ProfileScreen';
 import InPageTabBar from '../components/InPageTabBar';
+import TopNavigationBar from '../navigation/TopNavigationBar';
 
 export default function HomeScreen() {
   const { t } = useLanguage();
   const [accountsExpanded, setAccountsExpanded] = useState(true);
   const [cardsExpanded, setCardsExpanded] = useState(true);
   const [cardDetailVisible, setCardDetailVisible] = useState(false);
-  const [profileVisible, setProfileVisible] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
+      <TopNavigationBar />
       <InPageTabBar activeTab="Home" />
 
       <ScrollView
@@ -142,15 +142,6 @@ export default function HomeScreen() {
         onRequestClose={() => setCardDetailVisible(false)}
       >
         <CardDetailScreen onBack={() => setCardDetailVisible(false)} />
-      </Modal>
-
-      {/* Profile Modal */}
-      <Modal
-        visible={profileVisible}
-        animationType="slide"
-        onRequestClose={() => setProfileVisible(false)}
-      >
-        <ProfileScreen onBack={() => setProfileVisible(false)} />
       </Modal>
     </SafeAreaView>
   );

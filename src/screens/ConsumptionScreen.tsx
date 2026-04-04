@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
 import InPageTabBar from '../components/InPageTabBar';
+import TopNavigationBar from '../navigation/TopNavigationBar';
 
 export default function ConsumptionScreen() {
   const { t } = useLanguage();
@@ -22,6 +23,7 @@ export default function ConsumptionScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <TopNavigationBar />
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.headerTitle}>{t('consumption.title')}</Text>

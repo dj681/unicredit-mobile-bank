@@ -92,6 +92,7 @@ export const tr = {
   },
   profile: {
     title: 'Profil',
+    greeting: 'Merhaba,',
     personalInfo: 'Kişisel Bilgiler',
     contact: 'İletişim',
     bankDetails: 'Banka Bilgileri',
