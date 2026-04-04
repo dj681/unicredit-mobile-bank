@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, ImageSourcePropType } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const tabEmojis: Record<string, string> = {
-  Home: '🏦',
-  Spending: '📊',
-  Payments: '🔄',
-  Offers: '💎',
-  More: '☰',
+const tabIcons: Record<string, ImageSourcePropType> = {
+  Home: require('../assets/icons/home.png'),
+  Spending: require('../assets/icons/spending.png'),
+  Payments: require('../assets/icons/payments.png'),
+  Offers: require('../assets/icons/offers.png'),
+  More: require('../assets/icons/more.png'),
 };
 
 export default function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
@@ -19,7 +19,7 @@ export default function CustomTabBar({ state, descriptors, navigation }: BottomT
         const { options } = descriptors[route.key];
         const label = options.title ?? route.name;
         const isFocused = state.index === index;
-        const emoji = tabEmojis[route.name] ?? '•';
+        const iconSource = tabIcons[route.name];
 
         const onPress = () => {
           const event = navigation.emit({
@@ -39,9 +39,16 @@ export default function CustomTabBar({ state, descriptors, navigation }: BottomT
             onPress={onPress}
             activeOpacity={0.7}
           >
-            <Text style={[styles.emoji, isFocused && styles.emojiActive]}>
-              {emoji}
-            </Text>
+            {iconSource && (
+              <Image
+                source={iconSource}
+                accessibilityLabel={route.name}
+                style={[
+                  styles.icon,
+                  isFocused ? styles.iconActive : styles.iconInactive,
+                ]}
+              />
+            )}
             <Text style={[styles.label, isFocused && styles.labelActive]}>
               {label}
             </Text>
@@ -65,12 +72,16 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     minHeight: 44,
   },
-  emoji: {
-    fontSize: 22,
-    opacity: 0.55,
+  icon: {
+    width: 24,
+    height: 24,
   },
-  emojiActive: {
+  iconActive: {
     opacity: 1,
+    tintColor: '#E31837',
+  },
+  iconInactive: {
+    opacity: 0.55,
   },
   label: {
     fontSize: 10,
