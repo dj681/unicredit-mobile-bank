@@ -92,6 +92,7 @@ export const en = {
   },
   profile: {
     title: 'Profile',
+    greeting: 'Hello,',
     personalInfo: 'Personal Information',
     contact: 'Contact',
     bankDetails: 'Bank Details',

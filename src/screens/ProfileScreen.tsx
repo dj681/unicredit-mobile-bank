@@ -8,21 +8,11 @@ import {
   ScrollView,
 } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
+import { PROFILE } from '../data/profile';
 
 interface ProfileScreenProps {
   onBack: () => void;
 }
-
-const PROFILE = {
-  firstName: 'John',
-  lastName: 'Doe',
-  phone: '+90 555 123 45 67',
-  email: 'john.doe@unicredit.com',
-  address: 'Bağcılar Mahallesi, Atatürk Caddesi No:12, 34200 İstanbul, Türkiye',
-  dob: '15/08/1985',
-  iban: 'TR33 0006 1005 1978 6457 8413 26',
-  clientId: 'UC-2025-001234',
-};
 
 export default function ProfileScreen({ onBack }: ProfileScreenProps) {
   const { t } = useLanguage();
@@ -45,7 +35,7 @@ export default function ProfileScreen({ onBack }: ProfileScreenProps) {
         {/* Avatar */}
         <View style={styles.avatarSection}>
           <View style={styles.avatar}>
-            <Text style={styles.avatarText}>JD</Text>
+            <Text style={styles.avatarText}>{PROFILE.firstName[0]}{PROFILE.lastName[0]}</Text>
           </View>
           <Text style={styles.fullName}>{PROFILE.firstName} {PROFILE.lastName}</Text>
           <Text style={styles.clientId}>{t('profile.clientId')}: {PROFILE.clientId}</Text>
